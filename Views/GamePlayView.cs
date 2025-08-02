@@ -16,7 +16,7 @@ namespace AltTesterProject.Views
         [AllureStep("Pause the game")]
         public void PauseGame()
         {
-            var pauseButton = FindElement(PauseButtonLocator);
+            var pauseButton = FindObject(PauseButtonLocator);
             pauseButton.Click();
             Reporter.Log("Game paused");
         }
@@ -24,7 +24,7 @@ namespace AltTesterProject.Views
         [AllureStep("Resume the game")]
         public void ResumeGame()
         {
-            var resumeButton = FindElement(ResumeButtonLocator);
+            var resumeButton = FindObject(ResumeButtonLocator);
             resumeButton.Click();
             Reporter.Log("Game resumed");
         }
@@ -34,7 +34,7 @@ namespace AltTesterProject.Views
         {
             try
             {
-                var resumeButton = FindElement(ResumeButtonLocator);
+                var resumeButton = FindObject(ResumeButtonLocator);
                 var isVisible = resumeButton.enabled;
                 Reporter.Log($"Game paused: {isVisible}");
                 return isVisible;
@@ -51,7 +51,7 @@ namespace AltTesterProject.Views
         {
             try
             {
-                var mainCharacter = FindElement(MainCharacterLocator);
+                var mainCharacter = FindObject(MainCharacterLocator);
                 var isPresent = mainCharacter.enabled;
                 Reporter.Log($"Main character present: {isPresent}");
                 return isPresent;
@@ -66,7 +66,7 @@ namespace AltTesterProject.Views
         [AllureStep("Get main character position")]
         public (float x, float y, float z) GetMainCharacterPosition()
         {
-            var mainCharacter = FindElement(MainCharacterLocator);
+            var mainCharacter = FindObject(MainCharacterLocator);
             var position = mainCharacter.GetWorldPosition();
             Reporter.Log($"Main character position: {position.x}, {position.y}, {position.z}");
             return (position.x, position.y, position.z);
@@ -84,7 +84,7 @@ namespace AltTesterProject.Views
         {
             try
             {
-                var gameHud = FindElement(GameHudLocator);
+                var gameHud = FindObject(GameHudLocator);
                 var isVisible = gameHud.enabled;
                 Reporter.Log($"Gameplay HUD visible: {isVisible}");
                 return isVisible;

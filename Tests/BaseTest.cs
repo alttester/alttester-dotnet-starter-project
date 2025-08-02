@@ -117,7 +117,8 @@ namespace AltTesterProject.Tests
                 host: TestConfiguration.AltTesterServerUrl,
                 port: TestConfiguration.AltTesterServerPort,
                 appName: TestConfiguration.AltTesterAppName,
-                enableLogging: false
+                enableLogging: false,
+                connectTimeout: 5
             );
 
             Reporter.AltDriver = driver;

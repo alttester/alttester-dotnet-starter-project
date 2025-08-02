@@ -16,7 +16,7 @@ namespace AltTesterProject.Views
         [AllureStep("Click play button")]
         public void ClickPlayButton()
         {
-            var playButton = FindElement(PlayButtonLocator);
+            var playButton = FindObject(PlayButtonLocator);
             playButton.Click();
             Reporter.Log("Clicked play button");
         }
@@ -26,7 +26,7 @@ namespace AltTesterProject.Views
         {
             try
             {
-                var mainMenuPanel = FindElement(MainMenuPanelLocator);
+                var mainMenuPanel = FindObject(MainMenuPanelLocator);
                 var isVisible = mainMenuPanel.enabled;
                 Reporter.Log($"Main menu panel visible: {isVisible}");
                 return isVisible;
@@ -41,7 +41,7 @@ namespace AltTesterProject.Views
         [AllureStep("Enter player name")]
         public void EnterPlayerName(string playerName)
         {
-            var inputField = FindElement(PlayerNameInputLocator);
+            var inputField = FindObject(PlayerNameInputLocator);
             inputField.SetText(playerName, true);
             Reporter.Log($"Entered player name: {playerName}");
         }
@@ -49,7 +49,7 @@ namespace AltTesterProject.Views
         [AllureStep("Navigate to settings")]
         public void NavigateToSettings()
         {
-            var settingsButton = FindElement(SettingsButtonLocator);
+            var settingsButton = FindObject(SettingsButtonLocator);
             settingsButton.Click();
             Reporter.Log("Navigated to settings");
         }

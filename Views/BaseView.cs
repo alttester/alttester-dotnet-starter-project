@@ -34,15 +34,15 @@ namespace AltTesterProject.Views
         [AllureStep("Wait for object")]
         public virtual AltObject WaitForObject((By, string) locator, float timeout = 20.0f, double interval = 0.5)
         {
-            Reporter.Log($"Waiting for element {locator.Item2} to be present.");
+            Reporter.Log($"Waiting for object {locator.Item2} to be present.");
             try
             {
                 return AltDriver.WaitForObject(locator.Item1, locator.Item2, timeout: timeout, interval: interval);
             }
             catch (AltTester.AltTesterUnitySDK.Driver.WaitTimeOutException)
             {
-                Reporter.Log($"Element {locator.Item2} was not found within {timeout} seconds", withScreenshot: true);
-                throw new AssertionException($"Element '{locator.Item2}' was not found within {timeout} seconds. Please check if the element exists or if the game loaded correctly.");
+                Reporter.Log($"Object {locator.Item2} was not found within {timeout} seconds", withScreenshot: true);
+                throw new AssertionException($"Object '{locator.Item2}' was not found within {timeout} seconds. Please check if the object exists or if the game loaded correctly.");
             }
         }
 
@@ -85,8 +85,8 @@ namespace AltTesterProject.Views
                 return false;
             }
         }
-        [AllureStep("Find element by locator")]
-        public virtual AltObject FindElement((By, string) locator)
+        [AllureStep("Find object by locator")]
+        public virtual AltObject FindObject((By, string) locator)
         {
             try
             {
@@ -94,8 +94,8 @@ namespace AltTesterProject.Views
             }
             catch (AltTester.AltTesterUnitySDK.Driver.NotFoundException)
             {
-                Reporter.Log($"Element {locator.Item2} not found", withScreenshot: true);
-                throw new AssertionException($"Element '{locator.Item2}' was not found. Please verify the element exists in the current scene.");
+                Reporter.Log($"Object {locator.Item2} not found", withScreenshot: true);
+                throw new AssertionException($"Object '{locator.Item2}' was not found. Please verify the object exists in the current scene.");
             }
         }
 
