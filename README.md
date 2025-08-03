@@ -459,7 +459,7 @@ public class MyCustomTests : BaseTest
     public void TestGameFlow()
     {
         Reporter.Log("Starting from main menu");
-        _menuView!.ClickPlay();
+        _menuView.ClickPlay();
 
         Reporter.Log("Verifying gameplay loaded");
         Assert.That(_gamePlayView!.GetPlayerHealth(), Is.GreaterThan(0));

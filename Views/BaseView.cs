@@ -7,8 +7,8 @@ namespace AltTesterProject.Views
         protected DriverContainer Drivers { get; set; }
 
         protected AltDriver AltDriver => Drivers.AltDriver;
-        protected AppiumDriver<AppiumWebElement>? AppiumDriver => Drivers.AppiumDriver;
-        protected IWebDriver? SeleniumDriver => Drivers.SeleniumDriver;
+        protected AppiumDriver<AppiumWebElement> AppiumDriver => Drivers.AppiumDriver;
+        protected IWebDriver SeleniumDriver => Drivers.SeleniumDriver;
 
         protected BaseView(DriverContainer drivers)
         {

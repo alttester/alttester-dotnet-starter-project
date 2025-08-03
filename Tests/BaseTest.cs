@@ -11,8 +11,8 @@ namespace AltTesterProject.Tests
     [AllureNUnit]
     public class BaseTest
     {
-        protected Exception? ExceptionFromOneTimeSetUp;
-        protected DriverContainer Drivers { get; set; } = default!;
+        protected Exception ExceptionFromOneTimeSetUp;
+        protected DriverContainer Drivers { get; set; } = default;
         private static Dictionary<String, String> unityLogs = new Dictionary<String, String>();
 
 
@@ -85,8 +85,8 @@ namespace AltTesterProject.Tests
             Reporter.Log($"Running tests with Selenium: {TestConfiguration.RunningWithSelenium}");
 
             // Start optional drivers based on configuration
-            AppiumDriver<AppiumWebElement>? appiumDriver = null;
-            IWebDriver? seleniumDriver = null;
+            AppiumDriver<AppiumWebElement> appiumDriver = null;
+            IWebDriver seleniumDriver = null;
 
             if (TestConfiguration.RunningWithAppium)
             {
@@ -129,12 +129,12 @@ namespace AltTesterProject.Tests
         }
 
         [AllureStep("Start Appium Driver")]
-        protected virtual AppiumDriver<AppiumWebElement>? StartAppiumDriver()
+        protected virtual AppiumDriver<AppiumWebElement> StartAppiumDriver()
         {
             Reporter.Log("Setting up Appium driver...");
 
             var appiumOptions = new AppiumOptions();
-            AppiumDriver<AppiumWebElement>? driver = null;
+            AppiumDriver<AppiumWebElement> driver = null;
 
             switch (TestConfiguration.Platform)
             {
@@ -164,7 +164,7 @@ namespace AltTesterProject.Tests
         }
 
         [AllureStep("Start Selenium Driver")]
-        protected virtual IWebDriver? StartSeleniumDriver()
+        protected virtual IWebDriver StartSeleniumDriver()
         {
 
             if (TestConfiguration.Platform == PlatformType.WebGL)
@@ -189,9 +189,9 @@ namespace AltTesterProject.Tests
         {
             try
             {
-                Drivers?.AltDriver?.Stop();
-                Drivers?.SeleniumDriver?.Quit();
-                Drivers?.AppiumDriver?.Quit();
+                Drivers.AltDriver.Stop();
+                Drivers.SeleniumDriver.Quit();
+                Drivers.AppiumDriver.Quit();
 
                 Reporter.Log("All drivers stopped successfully");
             }
@@ -207,7 +207,7 @@ namespace AltTesterProject.Tests
 
         protected virtual void SetupUnityLogListener()
         {
-            if (Drivers?.AltDriver != null)
+            if (Drivers.AltDriver != null)
             {
                 Reporter.Log("Setting up Unity log listener");
                 Drivers.AltDriver.AddNotificationListener<AltLogNotificationResultParams>(

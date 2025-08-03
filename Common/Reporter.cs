@@ -4,7 +4,7 @@ namespace AltTesterProject.Common
 {
     public static class Reporter
     {
-        public static AltDriver? AltDriver { get; set; }        public static void Log(string message, bool withScreenshot = false, bool calledFromRun = false)
+        public static AltDriver AltDriver { get; set; }        public static void Log(string message, bool withScreenshot = false, bool calledFromRun = false)
         {
             var timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             var formattedMessage = $"[{timestamp}] {message}";
@@ -19,7 +19,7 @@ namespace AltTesterProject.Common
                 TakeScreenshot();
             }
         }
-        public static void TakeScreenshot(string? customName = null)
+        public static void TakeScreenshot(string customName = null)
         {
             if (AltDriver == null)
             {
@@ -54,7 +54,7 @@ namespace AltTesterProject.Common
             }
         }
 
-        public static void AttachFileToAllure(string filePath, string? customName = null)
+        public static void AttachFileToAllure(string filePath, string customName = null)
         {
             var fileName = customName ?? Path.GetFileNameWithoutExtension(filePath);
             
