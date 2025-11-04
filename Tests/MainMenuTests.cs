@@ -7,16 +7,6 @@ namespace AltTesterProject.Tests
     [AllureSuite("Main Menu Tests")]
     public class MainMenuTests : BaseTest
     {
-        private MainMenuView mainMenuView;
-        private GamePlayView gamePlayView;
-
-        [SetUp]
-        public void TestSetUp()
-        {
-            mainMenuView = new MainMenuView(Drivers);
-            gamePlayView = new GamePlayView(Drivers);
-        }
-
         [Test]
         public void TestMainMenuLoadsSuccessfully()
         {
@@ -33,11 +23,11 @@ namespace AltTesterProject.Tests
         {
             // This test will should fail because it's expecting an element you probably don't have in your scene
 
-            mainMenuView.WaitForMainMenuReady(timeoutSeconds: 2);
-            mainMenuView.StartNewGame(playerName: "TestPlayer");
+            MainMenuView.WaitForMainMenuReady(timeoutSeconds: 2);
+            MainMenuView.StartNewGame(playerName: "TestPlayer");
 
-            gamePlayView.WaitForGamePlayReady(timeoutSeconds: 2);
-            Assert.That(gamePlayView.IsMainCharacterPresent(), Is.True, "Main character should be present after starting a new game");
+            GamePlayView.WaitForGamePlayReady(timeoutSeconds: 2);
+            Assert.That(GamePlayView.IsMainCharacterPresent(), Is.True, "Main character should be present after starting a new game");
 
         }
     }

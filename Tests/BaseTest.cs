@@ -1,4 +1,5 @@
 using AltTester.AltTesterUnitySDK.Driver.Notifications;
+using AltTesterProject.Views;
 using PlatformType = AltTesterProject.Common.PlatformType;
 
 namespace AltTesterProject.Tests
@@ -13,6 +14,11 @@ namespace AltTesterProject.Tests
     {
         protected Exception ExceptionFromOneTimeSetUp;
         protected DriverContainer Drivers { get; set; } = default;
+        
+        // View instances available to all test classes
+        protected MainMenuView MainMenuView { get; set; }
+        protected GamePlayView GamePlayView { get; set; }
+        
         private static Dictionary<String, String> unityLogs = new Dictionary<String, String>();
 
 
@@ -27,6 +33,7 @@ namespace AltTesterProject.Tests
             {
                 StartAllDrivers();
                 SetupUnityLogListener();
+                InitializeViews();
             }
             catch (Exception ex)
             {
@@ -75,6 +82,17 @@ namespace AltTesterProject.Tests
         #endregion
 
         #region Driver Management
+
+        [AllureStep("Initialize View Objects")]
+        public void InitializeViews()
+        {
+            Reporter.Log("Initializing view objects...");
+            
+            MainMenuView = new MainMenuView(Drivers);
+            GamePlayView = new GamePlayView(Drivers);
+            
+            Reporter.Log("All view objects initialized successfully");
+        }
 
         [AllureStep("Start All Drivers and Set Up Test Environment")]
         public void StartAllDrivers()
