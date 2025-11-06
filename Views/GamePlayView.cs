@@ -1,4 +1,3 @@
-using By = AltTester.AltTesterUnitySDK.Driver.By;
 
 namespace AltTesterProject.Views
 {

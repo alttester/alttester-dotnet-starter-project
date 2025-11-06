@@ -1,5 +1,3 @@
-using AltTester.AltTesterUnitySDK.Driver.Notifications;
-using AltTesterProject.Views;
 using PlatformType = AltTesterProject.Common.PlatformType;
 
 namespace AltTesterProject.Tests

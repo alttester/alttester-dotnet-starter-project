@@ -1,4 +1,3 @@
-using By = AltTester.AltTesterUnitySDK.Driver.By;
 
 namespace AltTesterProject.Views
 {
@@ -39,7 +38,7 @@ namespace AltTesterProject.Views
             {
                 return AltDriver.WaitForObject(locator.Item1, locator.Item2, timeout: timeout, interval: interval);
             }
-            catch (AltTester.AltTesterUnitySDK.Driver.WaitTimeOutException)
+            catch (WaitTimeOutException)
             {
                 Reporter.Log($"Object {locator.Item2} was not found within {timeout} seconds", withScreenshot: true);
                 throw new AssertionException($"Object '{locator.Item2}' was not found within {timeout} seconds. Please check if the object exists or if the game loaded correctly.");
@@ -80,7 +79,7 @@ namespace AltTesterProject.Views
                 AltDriver.FindObject(locator.Item1, locator.Item2);
                 return true;
             }
-            catch (AltTester.AltTesterUnitySDK.Driver.NotFoundException)
+            catch (AltTester.AltTesterSDK.Driver.NotFoundException)
             {
                 return false;
             }
@@ -92,7 +91,7 @@ namespace AltTesterProject.Views
             {
                 return AltDriver.FindObject(locator.Item1, locator.Item2);
             }
-            catch (AltTester.AltTesterUnitySDK.Driver.NotFoundException)
+            catch (AltTester.AltTesterSDK.Driver.NotFoundException)
             {
                 Reporter.Log($"Object {locator.Item2} not found", withScreenshot: true);
                 throw new AssertionException($"Object '{locator.Item2}' was not found. Please verify the object exists in the current scene.");

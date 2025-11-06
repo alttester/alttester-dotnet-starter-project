@@ -1,5 +1,3 @@
-using AltBy = AltTester.AltTesterUnitySDK.Driver.By;
-using SeleniumBy = OpenQA.Selenium.By;
 
 namespace AltTesterProject.Tests
 {
