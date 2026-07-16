@@ -1,5 +1,5 @@
 @echo off
-setlocal
+setlocal enabledelayedexpansion
 
 REM Simple AltTester test runner for Windows
 
@@ -64,23 +64,23 @@ REM Run tests
 echo Running tests...
 if not "%FILTER%"=="" (
     dotnet test --filter "%FILTER%" --logger "console;verbosity=detailed" --logger "junit;LogFileName=junit.xml" --results-directory "%OUTPUT_DIR%"
-    set TEST_EXIT_CODE=%errorlevel%
+    set TEST_EXIT_CODE=!errorlevel!
 ) else (
     dotnet test --logger "console;verbosity=detailed" --logger "junit;LogFileName=junit.xml" --results-directory "%OUTPUT_DIR%"
-    set TEST_EXIT_CODE=%errorlevel%
+    set TEST_EXIT_CODE=!errorlevel!
 )
 
 if %TEST_EXIT_CODE% equ 0 (
-    echo ✅ Tests passed! Results in %OUTPUT_DIR%
+    echo ✅ Tests passed^! Results in %OUTPUT_DIR%
 ) else (
-    echo ❌ Some tests failed (exit code: %TEST_EXIT_CODE%). Results in %OUTPUT_DIR%
+    echo ❌ Some tests failed ^(exit code: %TEST_EXIT_CODE%^). Results in %OUTPUT_DIR%
 )
 
 REM Generate Allure report if allure-results exist
 if exist "bin\Debug\net8.0\allure-results" (
     echo Generating Allure report...
     where allure >nul 2>nul
-    if %errorlevel% equ 0 (
+    if !errorlevel! equ 0 (
         allure generate bin\Debug\net8.0\allure-results -o "%OUTPUT_DIR%\allure-report" --clean --single-file
         echo 📊 Allure report generated in %OUTPUT_DIR%\allure-report
     ) else (
